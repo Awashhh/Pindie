@@ -5,7 +5,7 @@ import { Footer } from './Components/Footer/Footer'
 
 export const metadata = {
   title: 'Pindie',
-  description: 'Портал инди-игр от студентов Яндекс Практикума',
+  description: 'Портал инди-игр от студентов Яндекс Практикума',
 }
 
 export default function RootLayout({ children }) {
