@@ -1,13 +1,21 @@
+// импортируем всё что нам нужно
 import {Banner} from "./Components/Banner/Banner"
 import {Promo} from "./Components/Promo/Promo";
-import {PopularCardsList} from "./Components/CardsList/PopularCardsList"
-import {NewCardList} from "./Components/CardsList/NewCardsList"
+import { CardsList } from "./Components/CardsList/CardsList";
+import { PopularCardsFragment } from "./Components/CardsList/PopularCardsFragment";
+import { NewCardFragment } from "./Components/CardsList/NewCardFragment";
+import Styles from './page.module.css'
+
 export default function Home() {
   return (
-        <main className="main">
+        <main className={Styles["main"]}>
           <Banner/>
-          <PopularCardsList/>
-          <NewCardList/>
+          <CardsList id='popular' title='Популярные'>
+            <PopularCardsFragment />
+          </CardsList>
+          <CardsList id='new' title='Новые'>
+            <NewCardFragment />
+          </CardsList>
           <Promo/>
         </main>
   )
