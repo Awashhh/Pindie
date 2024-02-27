@@ -13,7 +13,7 @@ export const CardsList = (props) =>{
                         <Card {...item} />
                     </a>
                 </li>
-              );
+              )
           })}
           </ul>
       </section> 
