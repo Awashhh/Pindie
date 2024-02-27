@@ -31,6 +31,8 @@
 .image {
   align-self: end;
   justify-self: end;
+  width: 230px;
+  height: 170px;
 }
 
 .button {
@@ -45,8 +47,13 @@
   width: fit-content;
   color: rgb(255, 255, 255);
   font-size: 30px;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, padding 0.3s ease-in-out, font-size 0.3s ease-in-out;
   white-space: nowrap;
+}
+.button__codeIsVisible{
+  padding: 30px 45px;
+  font-size: 40px;
+
 }
 
 .button:hover {
@@ -63,6 +70,10 @@
   cursor: default;
 }
 @media (width <= 1440px) {
+  .image{
+    width: auto;
+    height: auto;
+  }
   .promo {
     padding: 40px 120px;
   }
@@ -82,8 +93,16 @@
   .promo {
     padding: 80px 40px;
   }
+  .image{
+    width: auto;
+    height: auto;
+  }
 }
 @media (width <= 768px) {
+  .image{
+    width: auto;
+    height: auto;
+  }
   .description {
     margin-left: 0;
   }
@@ -102,5 +121,7 @@
   .image {
     max-width: 500px;
     justify-self: start;
+    width: auto;
+    height: auto;
   }
 }
