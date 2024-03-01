@@ -18,7 +18,9 @@
 
 .logo__image {
   width: 100%;
+  min-width: 148px;
 }
+
 
 .menu {
   display: flex;
@@ -55,7 +57,12 @@
 }
 
 .menu__link:hover {
+  background-color: #fefea3;
+}
+
+.menu__link_active {
   background-color: #ffff00;
+  pointer-events: none;
 }
 
 .auth {
