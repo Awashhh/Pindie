@@ -1,8 +1,9 @@
-import { getGamesByCategory } from "../data/data-utils";
 import { CardsList } from "../Components/CardsList/CardsList";
+import { endpoints } from "../api/config";
+import { getNormalizedGamesDataByCategory } from "../api/api-utilits";
 
-export default function Shooters() {
-    const shootersGames = getGamesByCategory('shooter');
+export default async function Shooters() {
+    const shootersGames = await getNormalizedGamesDataByCategory(endpoints.games, 'shooter');
     
     return(
         <main className={'main-inner'}>

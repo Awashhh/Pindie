@@ -20,13 +20,13 @@ export const Footer = () =>{
     </div>
     <ul className={Styles['social-list']}>
       <li className={Styles['social-list__item']}>
-        <Link href="https://www.youtube.com/@yandex" className={Styles['social-list__link']}>YT</Link>
+        <a href="https://www.youtube.com/@yandex" className={Styles['social-list__link']}>YT</a>
       </li>
       <li className={Styles['social-list__item']}>
-        <Link href="https://vk.com/yandex" className={Styles['social-list__link']}>ВК</Link>
+        <a href="https://vk.com/yandex" className={Styles['social-list__link']}>ВК</a>
       </li>
       <li className={Styles['social-list__item']}>
-        <Link href="https://t.me/s/yandex" className={Styles['social-list__link']}>TG</Link>
+        <a href="https://t.me/s/yandex" className={Styles['social-list__link']}>TG</a>
       </li>
     </ul>
   </footer>
