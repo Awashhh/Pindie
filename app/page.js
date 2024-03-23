@@ -1,9 +1,9 @@
 // импортируем компоненты
 import { Banner } from './Components/Banner/Banner';
 import { Promo } from './Components/Promo/Promo';
-import { CardsList } from './Components/CardsList/CardsList';
+import { CardsList, CardsListSection } from './Components/CardsListSection/CardsListSection';
+import Styles from './page.module.css'
 // импортируем стили
-import Styles from './page.module.css';
 // импортируем данные
 import { getNormalizedGamesDataByCategory } from './api/api-utilits'
 import { endpoints } from './api/config';
@@ -13,11 +13,11 @@ export default async function Home() {
 	const newGames = await getNormalizedGamesDataByCategory(endpoints.games, 'new')
 
 	return (
-		<main className={Styles['main']}>
+		<main className='main'>
 			<Banner />
-			<CardsList id='popular' title='Популярные' data={popularGames} />
-			<CardsList id='new' title='Новые' data={newGames} />
+			<CardsListSection id='popular' title='Популярные' data={popularGames} type='slider' />
+			<CardsListSection id='new' title='Новые' data={newGames} type='slider'  />
 			<Promo />
 		</main>
-	);
+	)
 }

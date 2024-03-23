@@ -1,53 +1,49 @@
 'use client'
 import Styles from './AuthForm.module.css';
 import { useEffect, useState } from 'react';
-import { authorize, isResponseOk, getMe, setJWT } from '../../api/api-utilits';
-import { endpoints } from '../../api/config'
+import { authorize, isResponseOk, getMe } from '../../api/api-utilits';
+import { endpoints } from '../../api/config';
+import { useStore } from '../../store/app-store';
 
 export const AuthForm = (props) => {
-  const [authData, setAuthData] = useState({ identifier: '', password: '' })
-  const [userData, setUserData] = useState(null)
-  const [message, setMessage] = useState({ status: null, text: null })
-	const [seconds, setSeconds] = useState(0);
-	const [isAuthorized, setIsAuthorized] = useState(false)
+	const [authData, setAuthData] = useState({ identifier: '', password: '' })
+	const [message, setMessage] = useState({ status: null, text: null })
+	const themeContext = useStore();
 
-  const handleInput = e => {
-    const newAuthData = authData
-    newAuthData[e.target.name] = e.target.value
-    setAuthData(newAuthData)
-    console.log(authData)
-  } 
+	const authContext = useStore()
 
-  const handleSubmit = async (e) =>{
-    e.preventDefault()
-    const userData =  await authorize(endpoints.auth, authData)
-    if (isResponseOk(userData)) {
-      setUserData(userData)
-			setJWT(userData.jwt)
-      props.setAuth(true)
-      setMessage({ status: 'success', text: 'Вы авторизовались!' })
-			setIsAuthorized(true)
-      console.log(message)
-    } else {
-      setMessage({ status: 'error', text: 'Неверные почта или пароль' })
-      console.log(message)
-			setIsAuthorized(false)
-    }
-  }
+	const handleInput = e => {
+		const newAuthData = authData
+		newAuthData[e.target.name] = e.target.value
+		setAuthData(newAuthData)
+		console.log(authData)
+	}
+
+	const handleSubmit = async e => {
+		e.preventDefault()
+		const userData = await authorize(endpoints.auth, authData)
+		if (isResponseOk(userData)) {
+			authContext.login(userData.user, userData.jwt)
+			setMessage({ status: 'success', text: 'Вы авторизовались!' })
+			console.log(message)
+		} else {
+			setMessage({ status: 'error', text: 'Неверные почта или пароль' })
+			console.log(message)
+		}
+	}
 	useEffect(() => {
 		let timer
-		if (userData) {
+		if (authContext.user) {
+			// Данные о user из контекста
 			timer = setTimeout(() => {
+				setMessage({ status: null, text: null })
 				props.closePopup()
-						if (isAuthorized) {
-							setMessage({ status: null, text: null })
-						}
 			}, 1000)
 		}
 		return () => clearTimeout(timer)
-	}, [userData, isAuthorized])
+	}, [authContext.user]) // Данные о user из контекста
 
-  return (
+	return (
 		<form className={Styles['form']} onSubmit={handleSubmit}>
 			<h2 className={Styles['form__title']}>Авторизация</h2>
 			<div className={Styles['form__fields']}>
@@ -82,5 +78,5 @@ export const AuthForm = (props) => {
 				</button>
 			</div>
 		</form>
-	) 
+	)
 };

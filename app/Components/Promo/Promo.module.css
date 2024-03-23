@@ -119,7 +119,6 @@
   }
 
   .image {
-    max-width: 500px;
     justify-self: start;
     width: auto;
     height: auto;

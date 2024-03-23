@@ -91,6 +91,28 @@
   color: #ffff00;
 }
 
+.switch_darkTheme{
+  background-color: black;
+  color:#ffff00;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out ;
+}
+
+.switch_lightTheme {
+  background-color: #ffff00;
+  color: black;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out
+}
+
+.switch_darkTheme:hover{
+  background-color: #ffff00;
+  color: black;
+}
+
+.switch_lightTheme:hover{
+  background-color: black;
+  color: #ffff00;
+}
+
 @media (width <=1440px) {
   .logo {
     width: 140px;
