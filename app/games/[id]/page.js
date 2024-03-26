@@ -1,5 +1,5 @@
 'use client'
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Styles from "./Game.module.css";
 import Definded from '../../Components/Definded/Definded.jsx';
 import { useEffect, useState, useContext } from "react";
