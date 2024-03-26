@@ -18,10 +18,14 @@ export const Header = () => {
   }
   const pathname = usePathname();
 	
-	const authContext = useStore();
+	const context = useStore();
 
 	const handleLogout = () => {
-		authContext.logout();
+		context.logout();
+	}
+
+	const switchTheme = () =>{
+		context.setTheme(context.theme);
 	}
 
   return (
@@ -109,7 +113,7 @@ export const Header = () => {
 					</li>
 				</ul>
 				<div className={Styles['auth']}>
-					{authContext.isAuth ? (
+					{context.isAuth ? (
 					<button className={`${Styles['auth__button']} ${popupIsOpened && Styles['auth__button__popupIsOpened']}`} onClick={handleLogout}>
 						Выйти
 					</button>
