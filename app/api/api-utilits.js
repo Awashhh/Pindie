@@ -36,11 +36,12 @@ export const isResponseOk = response => {
 }
 
 const normalizeDataObject = obj => {
-	return {
-		...obj,
-		category: obj.categories,
-		users: obj.users_permissions_users,
-	}
+	let str = JSON.stringify(obj)
+
+	str = str.replaceAll('_id', 'id')
+	const newObj = JSON.parse(str)
+	const result = { ...newObj, category: newObj.categories }
+	return result
 }
 
 export const normalizeData = data => {
@@ -56,6 +57,7 @@ export const getNormalizedGamesDataByCategory = async (url, category) => {
 
 export const getNormalizedGameDataById = async (url, id) => {
 	const data = await getData(`${url}/${id}`)
+	console.log(data)
 	return isResponseOk(data) ? normalizeDataObject(data) : data
 }
 

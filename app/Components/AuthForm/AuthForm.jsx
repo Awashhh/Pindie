@@ -6,10 +6,9 @@ import { endpoints } from '../../api/config';
 import { useStore } from '../../store/app-store';
 
 export const AuthForm = (props) => {
-	const [authData, setAuthData] = useState({ identifier: '', password: '' })
+	const [authData, setAuthData] = useState({ email: '', password: '' })
 	const [message, setMessage] = useState({ status: null, text: null })
-	const themeContext = useStore();
-
+	
 	const authContext = useStore()
 
 	const handleInput = e => {
@@ -23,7 +22,7 @@ export const AuthForm = (props) => {
 		e.preventDefault()
 		const userData = await authorize(endpoints.auth, authData)
 		if (isResponseOk(userData)) {
-			authContext.login(userData.user, userData.jwt)
+			authContext.login({ ...userData, id: userData._id }, userData.jwt)
 			setMessage({ status: 'success', text: 'Вы авторизовались!' })
 			console.log(message)
 		} else {
@@ -52,7 +51,7 @@ export const AuthForm = (props) => {
 					<input
 						className={Styles['form__field-input']}
 						onInput={handleInput}
-						name='identifier'
+						name='email'
 						type='email'
 						placeholder='hello@world.com'
 					/>
